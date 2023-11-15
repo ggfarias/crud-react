@@ -21,13 +21,3 @@ function App() {
 
 export default App;
 
-
-{/* 
-
-<div className="main">
-  <h2 className="main-header">React Crud Operations</h2>
-  <Route path="/" element={<Create />} />
-</div> 
-      
-    
-*/}

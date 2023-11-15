@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import "./read.module.css";
-import { Table } from "semantic-ui-react";
+import { Button, Table } from "semantic-ui-react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Read = () => {
+  const setData = (data) => {
+    let {id, firstName, lastName, checkbox} = data;
+    localStorage.setItem('ID', id)
+    localStorage.setItem('First Name', firstName)
+    localStorage.setItem('Last Name', lastName)
+    localStorage.setItem('Checkbox Value', checkbox)
+
+  };
   const [APIData, setAPIData] = useState([]);
   useEffect(() => {
     axios
@@ -22,6 +31,7 @@ const Read = () => {
             <Table.HeaderCell>First Name</Table.HeaderCell>
             <Table.HeaderCell>Last Name</Table.HeaderCell>
             <Table.HeaderCell>Checked</Table.HeaderCell>
+            <Table.HeaderCell>Update</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -34,6 +44,11 @@ const Read = () => {
                 <Table.Cell>
                   {data.checkbox ? "Checked" : "Unchecked"}
                 </Table.Cell>
+                <Link to="/update">
+                  <Table.Cell>
+                    <Button onClick={() => setData(data)}>Update</Button>
+                  </Table.Cell>
+                </Link>
               </Table.Row>
             );
           })}
